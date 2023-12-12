@@ -41,6 +41,9 @@ jobs:
             zip -r ../${{ github.sha }}.zip .
       - name: Archive artifact
         uses: actions/upload-artifact@v2
+        with:
+          name: zipped-bundle
+          path: ${{ github.sha }}.zip
 
   publish:
     runs-on: ubuntu-latest
@@ -55,8 +58,3 @@ jobs:
           body: New release for ${{ github.sha }}. Release notes can be found in the docs.
           draft: false
           prerelease: false
-    
-    
-        with:
-          name: zipped-bundle
-          path: ${{ github.sha }}.zip
